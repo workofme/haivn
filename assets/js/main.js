@@ -45,3 +45,13 @@ function topFunction() {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
+
+$('body').css('opacity', '0.5')
+setTimeout(function() {
+    $('body').addClass('loaded');
+    $('body').css('opacity', '1')
+}, 500);
+window.load(() => {
+    $('body').removeClass('loaded');
+    $('body').css('opacity', '1')
+})

@@ -3,7 +3,7 @@
         <div class="col-12 col-sm-12 col-md-8 col-xl-8 col-lg-8">
             <h5 class="title py-2">New Images</h5>
             <div class="alert alert-warning" role="alert">
-                ban la nguoi quyet dinh bai viet co duoc hien thi hay khong, bai viet co luong dislike tren 10 thi se bi loai bo click nut dislike &nbsp;<i class="fas fa-thumbs-down"></i>
+                 bài viết có lượng dislike nhiều sẽ không được hiển thị &nbsp;<i class="fas fa-thumbs-down"></i>
                 <br> Chú ý : HaiVN đang trong giai đoạn thử nghiệm
             </div>
             <div class="row post py-3">
