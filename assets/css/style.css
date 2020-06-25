@@ -23,3 +23,13 @@ nav.navbar a:hover {
 .dropdown-menu {
     background: #222;
 }
+
+div.head {
+    border-bottom: 1px solid #ccc;
+}
+
+.setting {
+    color: rgb(66, 61, 61);
+    font-size: 1.3em;
+    cursor: pointer;
+}
