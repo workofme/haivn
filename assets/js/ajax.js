@@ -5,9 +5,9 @@ $(document).ready(() => {
         var pass = $('#pass_login');
 
         if (user.val() == "") {
-            swal('Tên tài khoản không được bỏ trống', 'error');
-
-
+            swall('Tên tài khoản không được bỏ trống', 'error');
+        } else if (pass.val() == "") {
+            swall('mật khẩu không được bỏ trống', 'error');
         }
     })
 })

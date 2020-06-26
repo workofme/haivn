@@ -60,8 +60,8 @@ if (list_title.length > 5) {
 
 }
 
-function swal(text, icon) {
-    return Swal.fire(
+function swall(text, icon) {
+    Swal.fire(
         'Thông báo!',
         text,
         icon
