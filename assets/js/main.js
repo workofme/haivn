@@ -59,3 +59,34 @@ var list_title = $('.list-group-item ul li a').text()
 if (list_title.length > 5) {
 
 }
+
+function swal(text, icon) {
+    return Swal.fire(
+        'Thông báo!',
+        text,
+        icon
+    )
+}
+
+function dele(text, url, data) {
+    return Swal.fire({
+        title: 'Bạn có chắc',
+        text: text,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.value) {
+            $.ajax({
+                    url: url,
+                    type: 'post',
+                    data: { data },
+                    dataType: 'json',
+
+                })
+                // swal("xóa thành công", 'success');
+        }
+    })
+}

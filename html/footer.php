@@ -28,24 +28,25 @@
                     <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
 
                         <!--Body-->
+                        <form id="login" >
                         <div class="modal-body mb-1">
                             <div class="md-form form-sm mb-5">
                                 <i class="fas fa-envelope prefix"></i>
-                                <input type="email" id="modalLRInput10" class="form-control form-control-sm validate">
-                                <label data-error="wrong" data-success="right" for="modalLRInput10">Your email</label>
+                                <input type="text" id="user_login" require class="form-control form-control-sm validate">
+                                <label data-error="wrong" data-success="right" for="user_login">Tên Tài Khoản</label>
                             </div>
 
                             <div class="md-form form-sm mb-4">
                                 <i class="fas fa-lock prefix"></i>
-                                <input type="password" id="modalLRInput11"
-                                    class="form-control form-control-sm validate">
-                                <label data-error="wrong" data-success="right" for="modalLRInput11">Your
-                                    password</label>
+                                <input type="password" id="pass_login" class="form-control form-control-sm validate">
+                                <label data-error="wrong" data-success="right" for="pass_login">Mật Khẩu</label>
                             </div>
                             <div class="text-center mt-2">
-                                <button class="btn btn-info">Log in <i class="fas fa-sign-in ml-1"></i></button>
+                                <button class="btn btn-info" type="submit">Đăng nhập <i
+                                        class="fas fa-sign-in ml-1"></i></button>
                             </div>
                         </div>
+                        </form>
                         <!--Footer-->
                         <div class="modal-footer">
 
@@ -60,34 +61,43 @@
                     <div class="tab-pane fade" id="panel8" role="tabpanel">
 
                         <!--Body-->
+                        <form id="reg">
                         <div class="modal-body">
                             <div class="md-form form-sm mb-5">
                                 <i class="fas fa-envelope prefix"></i>
-                                <input type="email" id="modalLRInput12" class="form-control form-control-sm validate">
-                                <label data-error="wrong" data-success="right" for="modalLRInput12">Your email</label>
+                                <input type="text" id="user_reg" class="form-control form-control-sm validate">
+                                <label data-error="wrong" data-success="right" for="user_reg">Tên tài Khoản</label>
                             </div>
 
                             <div class="md-form form-sm mb-5">
                                 <i class="fas fa-lock prefix"></i>
-                                <input type="password" id="modalLRInput13"
-                                    class="form-control form-control-sm validate">
-                                <label data-error="wrong" data-success="right" for="modalLRInput13">Your
-                                    password</label>
+                                <input type="password" id="pass_reg" class="form-control form-control-sm validate">
+                                <label data-error="wrong" data-success="right" for="pass_reg">Mật Khẩu</label>
                             </div>
-
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="nam"
+                                    value="1">
+                                <label class="form-check-label" for="nam">Nam</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="nu"
+                                    value="2">
+                                <label class="form-check-label" for="nu">Nữ</label>
+                            </div>
+                            
                             <div class="md-form form-sm mb-4">
                                 <i class="fas fa-lock prefix"></i>
-                                <input type="password" id="modalLRInput14"
-                                    class="form-control form-control-sm validate">
-                                <label data-error="wrong" data-success="right" for="modalLRInput14">Repeat
-                                    password</label>
+                                <input type="password" id="rp_pass" class="form-control form-control-sm validate">
+                                <label data-error="wrong" data-success="right" for="rp_pass">Nhập lại mật khẩu</label>
                             </div>
 
                             <div class="text-center form-sm mt-2">
-                                <button class="btn btn-info">Sign up <i class="fas fa-sign-in ml-1"></i></button>
+                                <button class="btn btn-info" id="reg" type="submit">Đăng Kí <i
+                                        class="fas fa-sign-in ml-1"></i></button>
                             </div>
 
                         </div>
+                        </form>
                         <!--Footer-->
                         <div class="modal-footer">
 
@@ -117,27 +127,27 @@
                 <form id="form-post">
                     <div class="form-group">
                         <label for="title">Tiêu Đề</label>
-                        <input type="text" class="form-control" id="title" >
-                        
+                        <input type="text" class="form-control" id="title">
+
                     </div>
                     <div class="form-group">
                         <label for="content">Nội dung</label>
                         <textarea class="form-control" id="content" rows="3"></textarea>
                     </div>
-                   
+
                     <div class="form-group ">
-                    <label for="anh">Ảnh</label>
-                    <input type="file" class="" id="anh">
-                        
+                        <label for="anh">Ảnh</label>
+                        <input type="file" class="" id="anh">
+
                     </div>
-                  <div class="text-center">
-                      <button class="btn btn-success" type="submit">đănng bài</button>
-                  </div>
+                    <div class="text-center">
+                        <button class="btn btn-success" type="submit">đănng bài</button>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              
+
             </div>
         </div>
     </div>
@@ -148,6 +158,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script src="assets/js/main.js"></script>
+<script src="assets/js/sweetalert2.min.js"></script>
+<script src="assets/js/ajax.js"></script>
 </body>
 
 </html>
