@@ -83,4 +83,35 @@ $(document).ready(() => {
             })
         }
     })
+    $('#logout').click(() => {
+        Swal.fire({
+            title: 'Thông báo',
+            text: "bạn có muốn đăng xuất",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: "ajax/logout.php",
+                    dataType: 'json',
+                    beforeSend: () => {
+                        $('.swal2-confirm').html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Loading...`)
+                    },
+                    success: (res) => {
+                        if (res.status == 0) {
+                            swall(res.messages, 'success')
+                            loadpage()
+                        } else if (res.status == 1) {
+                            swall(res.messages, 'error')
+                            loadpage()
+                        }
+                    }
+                })
+            }
+        })
+    })
 })

@@ -96,3 +96,34 @@ function loadpage() {
         window.location.reload()
     }, 2000)
 }
+
+function wrong(text, icon) {
+    Swal.fire({
+        icon: icon,
+        title: 'Thông báo',
+        text: text
+
+    })
+}
+
+function move_url(url) {
+    setTimeout(function() {
+        window.location.href = url;
+    }, 2000)
+}
+var readURL = function(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            $('.avatar').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+
+$(".file-upload").on('change', function() {
+    readURL(this);
+});
