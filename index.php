@@ -5,5 +5,13 @@ $database = new Database;
 include "html/header.php";
 include "html/main.php";
 include "html/footer.php";
-// $database->insert('users' , array('user' => 'baobao' , 'pass' => '12345' , 'active' => 1));
-$database->update('users' , array('user' => "baobao1" ) , array('user' => 'baobao'));
+// insert
+// $database->insert('users' , array('user' => 'baobao' , 'pass' => '12345' , 'active' => 1)); 
+// update
+// $database->update('users' , array('user' => "baobao1" ) , array('user' => 'baobao'));
+// get id
+// $id = $database->fetchsql("SELECT * FROM `users` where `id` = '1'");
+
+// $id_ = $id[0]['id'];
+// delete
+// $delete = $database->delete('users' , $id_);
