@@ -90,3 +90,9 @@ function dele(text, url, data) {
         }
     })
 }
+
+function loadpage() {
+    setTimeout(function() {
+        window.location.reload()
+    }, 2000)
+}

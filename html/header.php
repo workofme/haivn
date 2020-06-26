@@ -69,10 +69,15 @@
                             <a class="nav-link " href="#" tabindex="-1">Chuyện chế</a>
                         </li>
                     </ul>
-                    <button type="button" id="login" class="btn btn-primary" data-toggle="modal" data-target="#modalLRForm">login / regis</button>
-                    <button type="button" id="post" class="btn btn-danger mx-2" data-toggle="modal" data-target="#extraLargeModal">Đăng bài</button>
                     
+                    <?php if(!isset($username)){ ?>
+                    <button type="button" id="login" class="btn btn-primary" data-toggle="modal" data-target="#modalLRForm">login / regis</button>
+                    <?php }  else {?>
+                    <button type="button" id="post" class="btn btn-danger mx-2" data-toggle="modal" data-target="#extraLargeModal">Đăng bài</button>
+                   
+                    <button type="button" id="login" class="btn btn-primary">Hi: <?php echo $username; ?></button> 
                     <img alt="" src="https://demos.creative-tim.com/argon-dashboard-pro/assets/img/theme/team-4.jpg" class="rounded-circle avatar">
+                    <?php } ?>
                     
                 </div>
             </div>

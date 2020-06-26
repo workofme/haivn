@@ -15,7 +15,8 @@
 
         public function __construct()
         {
-            $this->link = mysqli_connect("localhost","root","","haivn") or die ();
+            $this->link = mysqli_connect("localhost","root","","haivn") or die ("<h1 style='text-align: center; color : red; font-weight: bold'> connect database fail </h1>");
+            
             mysqli_set_charset($this->link,"utf8");
         }
 
@@ -90,14 +91,25 @@
             return mysqli_affected_rows($this->link);
 
         }
-        public function countTable($table)
+        public function countTable($table , array $conditions)
         {
-            $sql = "SELECT id FROM  {$table}";
+            $sql = "SELECT * FROM {$table}";
+            $where = " WHERE ";
+            foreach($conditions as $field => $value) {
+                if(is_string($value)) {
+                    $where .= $field .'='.'\''. mysqli_real_escape_string($this->link, xss_clean($value)) .'\' AND ';
+                } else {
+                    $where .= $field .'='. mysqli_real_escape_string($this->link, xss_clean($value)) . ' AND ';
+                }
+            }
+            $where = substr($where, 0, -5);
+            $sql .= $where;
+            
             $result = mysqli_query($this->link, $sql) or die("Lỗi Truy Vấn countTable----" .mysqli_error($this->link));
             $num = mysqli_num_rows($result);
             return $num;
         }
-
+        
 
         /**
          * [delete description] hàm delete

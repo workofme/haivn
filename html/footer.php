@@ -42,7 +42,7 @@
                                 <label data-error="wrong" data-success="right" for="pass_login">Mật Khẩu</label>
                             </div>
                             <div class="text-center mt-2">
-                                <button class="btn btn-info" type="submit">Đăng nhập <i
+                                <button class="btn btn-info" type="submit" id="btn-login">Đăng nhập <i
                                         class="fas fa-sign-in ml-1"></i></button>
                             </div>
                         </div>
@@ -75,12 +75,12 @@
                                 <label data-error="wrong" data-success="right" for="pass_reg">Mật Khẩu</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="nam"
+                                <input class="form-check-input" type="radio" name="gender" id="nam"
                                     value="1">
                                 <label class="form-check-label" for="nam">Nam</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="nu"
+                                <input class="form-check-input" type="radio" name="gender" id="nu"
                                     value="2">
                                 <label class="form-check-label" for="nu">Nữ</label>
                             </div>
@@ -92,7 +92,7 @@
                             </div>
 
                             <div class="text-center form-sm mt-2">
-                                <button class="btn btn-info" id="reg" type="submit">Đăng Kí <i
+                                <button class="btn btn-info" id="reg" type="submit" id="btn-reg">Đăng Kí <i
                                         class="fas fa-sign-in ml-1"></i></button>
                             </div>
 
@@ -153,8 +153,10 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-    crossorigin="anonymous"></script>
+<script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script src="assets/js/main.js"></script>

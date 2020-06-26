@@ -7,6 +7,13 @@
     /**
     * debug
     **/
+    
+    $status = 0;
+    $messages= "";
+    
+    if(isset($_SESSION['username'])){
+        $username = $_SESSION['username'];
+    }
     function _debug($data) {
 
         echo '<pre style="background: #000; color: #fff; width: 100%; overflow: auto">';
@@ -90,7 +97,11 @@
         return isset($_GET[$string]) ? $_GET[$string] : '';
     }
 
-    
+    function datainput($data)
+    {
+        $data = strip_tags($_POST[$data]);
+        
+    }
     /**
      * post Input
      */
@@ -100,7 +111,13 @@
         return isset($_POST[$string]) ? $_POST[$string] : '';
     }
 
-
+    function data_input($string)
+    {
+       $data = strip_tags($_POST[$string]);
+       $data = trim($_POST[$string]);
+       return $data;
+         
+    }
 
     function base_url()
     {
