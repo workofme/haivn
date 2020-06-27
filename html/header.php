@@ -78,8 +78,7 @@
                             <a class="nav-link " href="#" tabindex="-1">Chuyện chế</a>
                         </li>
                     </ul>
-                    <button type="button" id="post" class="btn btn-danger mx-2" data-toggle="modal"
-                        data-target="#extraLargeModal">Đăng bài</button>
+                    <button type="button" id="post" class="btn btn-danger mx-2">Đăng bài</button>
                     <?php if(!isset($username)){ ?>
                     <button type="button" id="login" class="btn btn-primary" data-toggle="modal"
                         data-target="#modalLRForm">login / regis</button>

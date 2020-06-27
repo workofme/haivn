@@ -33,20 +33,18 @@
                                 <div class="md-form form-sm mb-5">
                                     <i class="fas fa-envelope prefix"></i>
                                     <input type="text" id="user_login" require
-                                        class="form-control form-control-sm validate">
-                                    <label data-error="wrong" data-success="right" for="user_login">Tên Tài
-                                        Khoản</label>
+                                        class="form-control form-control-sm validate" placeholder="Tên tài khoản">
+                                    
                                 </div>
 
                                 <div class="md-form form-sm mb-4">
                                     <i class="fas fa-lock prefix"></i>
                                     <input type="password" id="pass_login"
-                                        class="form-control form-control-sm validate">
-                                    <label data-error="wrong" data-success="right" for="pass_login">Mật Khẩu</label>
+                                        class="form-control form-control-sm validate" placeholder="Mật khẩu">
+                                    
                                 </div>
                                 <div class="text-center mt-2">
-                                    <button class="btn btn-info" type="submit" id="btn-login">Đăng nhập <i
-                                            class="fas fa-sign-in ml-1"></i></button>
+                                    <button class="btn btn-info" type="submit" id="btn-login">Đăng nhập </button>
                                 </div>
                             </div>
                         </form>
@@ -66,18 +64,27 @@
                         <!--Body-->
                         <form id="reg">
                             <div class="modal-body">
-                                <div class="md-form form-sm mb-5">
+                                <div class="md-form form-sm mb-2">
                                     <i class="fas fa-envelope prefix"></i>
-                                    <input type="text" id="user_reg" class="form-control form-control-sm validate">
-                                    <label data-error="wrong" data-success="right" for="user_reg">Tên tài Khoản</label>
+                                    <input type="text" id="user_reg" class="form-control form-control-sm validate" placeholder="Tên tài khoản">
+                                    
+                                </div>
+                                <div class="row">
+                                    <div class="md-form form-sm mb-3 col">
+                                      <input type="text" class="form-control" placeholder="Họ" id="first_name">
+                                    </div>
+                                    <div class="md-form form-sm mb-3 col">
+                                      <input type="text" class="form-control" placeholder="Tên" id="last_name">
+                                    </div>
+                                </div>
+                                <div class="md-form form-sm mb-3">
+                                    <i class="fas fa-lock prefix"></i>
+                                    <input type="password" id="pass_reg" class="form-control form-control-sm validate" placeholder="Mật khẩu">
+                                   
                                 </div>
 
-                                <div class="md-form form-sm mb-5">
-                                    <i class="fas fa-lock prefix"></i>
-                                    <input type="password" id="pass_reg" class="form-control form-control-sm validate">
-                                    <label data-error="wrong" data-success="right" for="pass_reg">Mật Khẩu</label>
-                                </div>
                                 <div class="form-check form-check-inline">
+
                                     <input class="form-check-input" type="radio" name="gender" id="nam" value="1">
                                     <label class="form-check-label" for="nam">Nam</label>
                                 </div>
@@ -86,16 +93,14 @@
                                     <label class="form-check-label" for="nu">Nữ</label>
                                 </div>
 
-                                <div class="md-form form-sm mb-4">
+                                <div class="md-form form-sm mb-3">
                                     <i class="fas fa-lock prefix"></i>
-                                    <input type="password" id="rp_pass" class="form-control form-control-sm validate">
-                                    <label data-error="wrong" data-success="right" for="rp_pass">Nhập lại mật
-                                        khẩu</label>
+                                    <input type="password" id="rp_pass" class="form-control form-control-sm validate" placeholder="Nhập lại mật khẩu">
+                                    
                                 </div>
 
                                 <div class="text-center form-sm mt-2">
-                                    <button class="btn btn-info" id="reg" type="submit" id="btn-reg">Đăng Kí <i
-                                            class="fas fa-sign-in ml-1"></i></button>
+                                    <button class="btn btn-info" id="reg" type="submit" id="btn-reg">Đăng Kí </button>
                                 </div>
 
                             </div>
@@ -118,42 +123,7 @@
 <!--Modal: Login / Register Form-->
 
 
-<div id="extraLargeModal" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Đăng Bài Mới</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="form-post">
-                    <div class="form-group">
-                        <label for="title">Tiêu Đề</label>
-                        <input type="text" class="form-control" id="title">
 
-                    </div>
-                    <div class="form-group">
-                        <label for="content">Nội dung</label>
-                        <textarea class="form-control" id="content" rows="3"></textarea>
-                    </div>
-
-                    <div class="form-group ">
-                        <label for="anh">Ảnh</label>
-                        <input type="file" class="" id="anh">
-
-                    </div>
-                    <div class="text-center">
-                        <button class="btn btn-success" type="submit">đănng bài</button>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-
-            </div>
-        </div>
-    </div>
-</div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>

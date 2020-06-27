@@ -1,6 +1,9 @@
 <?php 
 
 if(isset($username)){
+  $get_user = $db->total("SELECT * FROM `users` WHERE `user` = '$username'");
+  $user = $get_user['user'];
+  $like = $get_user['like'];
 
  ?>
  <div class="container bootstrap snippet py-3">
@@ -26,11 +29,11 @@ if(isset($username)){
           
           
           <ul class="list-group">
-            <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Shares</strong></span> 125</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
+            
+            
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span><?php echo $get_user['like']; ?></li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> <?php echo $get_user['fllow']; ?></li>
           </ul> 
                
           
@@ -51,7 +54,7 @@ if(isset($username)){
                           
                           <div class="col-xs-6">
                               <label for="first_name"><h4>Tên hiển thị</h4></label>
-                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
+                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any." value="<?php echo $get_user['user']; ?>">
                           </div>
                       </div>
                       <div class="form-group">
@@ -71,7 +74,7 @@ if(isset($username)){
                       <div class="form-group">
                            <div class="col-xs-12">
                                 <br>
-                              	<button class="btn  btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                              	<button class="btn  btn-success" type="button" id="save_profile"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
                                	<button class="btn btn-danger" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
                             </div>
                       </div>
