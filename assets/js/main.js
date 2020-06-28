@@ -51,10 +51,7 @@ setTimeout(function() {
     $('body').addClass('loaded');
     $('body').css('opacity', '1')
 }, 500);
-window.load(() => {
-    $('body').removeClass('loaded');
-    $('body').css('opacity', '1')
-})
+
 var list_title = $('.list-group-item ul li a').text()
 if (list_title.length > 5) {
 
