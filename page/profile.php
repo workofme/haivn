@@ -24,7 +24,7 @@ if(isset($username)){
         <h6 class="py-2"> Thay đổi ảnh đại điện</h6>
       <?php } ?>
         
-        <input type="file" class="text-center center-block file-upload">
+        <input type="file" class="text-center center-block file-upload" id="file">
       </div></hr><br>
 
                
@@ -55,12 +55,19 @@ if(isset($username)){
           <div class="tab-content">
             <div class="tab-pane active" id="home">
                 <hr>
-                  <form class="form" action="##" method="post" id="registrationForm">
+                  
                       <div class="form-group">
                           
                           <div class="col-xs-6">
-                              <label for="first_name"><h4>Tên hiển thị</h4></label>
-                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any." value="<?php echo $get_user['user']; ?>">
+                              <label for="first_name"><h4>Họ</h4></label>
+                              <input type="text" class="form-control"  id="first_name" title="enter your first name if any." placeholder="<?php echo $get_user['ho']; ?>">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                              <label for="last_name"><h4>Tên</h4></label>
+                              <input type="text" class="form-control"  id="last_name"  title="enter your first name if any." placeholder="<?php echo $get_user['ten']; ?>">
                           </div>
                       </div>
                       <div class="form-group">
@@ -84,7 +91,7 @@ if(isset($username)){
                                	<button class="btn btn-danger" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
                             </div>
                       </div>
-              	</form>
+              	
               
               <hr>
               

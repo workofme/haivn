@@ -5,10 +5,11 @@ include "Function.php";
 $db = new Database;
 include "html/header.php";
 include "html/main.php";
-include "html/footer.php";
 if (isset($username)) {
 	include 'html/post_modal.php';
 }
+include "html/footer.php";
+
 // insert
 // $database->insert('users' , array('user' => 'baobao' , 'pass' => '12345' , 'active' => 1)); 
 // update
