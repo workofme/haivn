@@ -8,7 +8,7 @@ if(isset($username)){
  ?>
  <div class="container bootstrap snippet py-3">
     <div class="row">
-  		<div class="col-sm-10"><h3>Trang Cá Nhân <?php echo $username; ?></h3></div>
+  		<div class="col-sm-10"><h5>Trang Cá Nhân <b class="text-danger"><?php echo $get_user['ho'] . $get_user['ten']; ?></b></h5></div>
     	
     </div>
     <div class="row">
@@ -16,8 +16,14 @@ if(isset($username)){
               
 
       <div class="text-center">
+      <?php if($get_user['avatar'] == ""){ ?>
         <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-        <h6>Upload a different photo...</h6>
+        <h6 class="py-2">Tải lên ảnh đại diện</h6>
+      <?php } else { ?>
+        <img src="assets/img/avatar/<?php echo $get_user['avatar']; ?>" class="avatar img-circle img-thumbnail" alt="avatar"> 
+        <h6 class="py-2"> Thay đổi ảnh đại điện</h6>
+      <?php } ?>
+        
         <input type="file" class="text-center center-block file-upload">
       </div></hr><br>
 
