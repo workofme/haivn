@@ -1,10 +1,15 @@
-            <?php
-                if(isset($_REQUEST['views'])){
-                    $page = $_REQUEST['views'] . '.php';
-                    include "page/".$page;
-                }
-                else {
-            ?>
+<?php
+    if(isset($_REQUEST['views'])){
+        $page = $_REQUEST['views'] . '.php';
+        include "page/".$page;
+    }
+    else {
+?>
+<?php
+    // $post = $db->total("SELECT * FROM `post`");
+    $num_post = $db->countTable('post' , array('active' => 0));
+    $query = $db->query("SELECT * FROM  `post`");
+?>
 <main class="container">
 
     <div class="row">
@@ -14,14 +19,22 @@
                 bài viết có lượng dislike nhiều sẽ không được hiển thị &nbsp;<i class="fas fa-thumbs-down"></i>
                 <br> Chú ý : HaiVN đang trong giai đoạn thử nghiệm
             </div>
-
+            <?php if($num_post > 0){
+                
+                while($row = mysqli_fetch_array($query)):
+              ?>
             <div class="row post py-3">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            
+                <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
+                <?php if($row['img'] !== ""){ ?>
+                    <img src="assets/img/post/<?php echo $row['img']; ?>" alt="" class="img-fluid img-post">
+                <?php } else { ?>
                     <img src="assets/img/anh.jpg" alt="" class="img-fluid img-post">
+             <?php } ?>
                 </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
                     <div class="view">
-                        <h5 class="title ">Nguyễn Ngọc Lưu Linh kute xinh đẹp</h5>
+                        <h5 class="title "><?php echo $row['content']; ?></h5>
                         <p>
                             <a class="far fa-eye views" href="">&nbsp;200</a>
                             <a class="fas fa-comments commnets" href=""> &nbsp; 22 &nbsp;</a>
@@ -30,21 +43,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row post py-3">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                    <img src="assets/img/anh.jpg" alt="" class="img-fluid img-post">
-                </div>
-                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                    <div class="view">
-                        <h5 class="title ">Nguyễn Ngọc Lưu Linh kute xinh đẹp</h5>
-                        <p>
-                            <a class="far fa-eye views" href="">&nbsp;200</a>
-                            <a class="fas fa-comments comments" href="">&nbsp; 22 &nbsp;</a>
-                            <a class="fas fa-thumbs-down dislike" href="">&nbsp;10</a>
-                            <a class="far fa-heart like" href="">&nbsp; 100</a></p>
-                    </div>
-                </div>
-            </div>
+              <?php endwhile; ?>
+            <?php } ?>
 
         </div>
         <div class="col-12 col-sm-12 col-md-4 col-xl-4 col-lg-4">

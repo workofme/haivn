@@ -202,4 +202,83 @@ $(document).ready(() => {
         }
 
     })
+    $('#post_new').click(() => {
+        var formData = new FormData()
+        var content = $('#content').val()
+        var files = $('#img')[0].files[0]
+        formData.append('img' , files);
+        formData.append('content' , content);
+        if(content.trim() !== "" && !files){
+            Swal.fire({
+                title: 'Thông báo',
+                text: "Bạn đăng bài viết nhưng không dùng ảnh",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Có , tôi muốn đăng bài!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: "ajax/new_post.php",
+                        type : 'post',
+                        data : formData,
+                        dataType: 'json',
+                        processData: false, contentType: false,
+                        beforeSend: () => {
+                            $(this).html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Loading...`)
+                        },
+                        success: (res) => {
+                            if (res.status == 0) {
+                                swall(res.messages, 'success')
+                                loadpage()
+                            } else if (res.status == 1) {
+                                swall(res.messages, 'error')
+                                loadpage()
+                            }
+                        }
+                    })
+                }
+            })
+        }
+        else if(files && content.trim() == ""){
+            Swal.fire({
+                title: 'Thông báo',
+                text: "Bạn đăng bài viết nhưng không có nội dung",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Có , tôi muốn đăng bài!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: "ajax/new_post.php",
+                        type : 'post',
+                        data : formData,
+                        dataType: 'json',
+                        processData: false, contentType: false,
+                        beforeSend: () => {
+                            $(this).html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Loading...`)
+                        },
+                        success: (res) => {
+                            if (res.status == 0) {
+                                swall(res.messages, 'success')
+                                loadpage()
+                            } else if (res.status == 1) {
+                                swall(res.messages, 'error')
+                                loadpage()
+                            }
+                        }
+                    })
+                }
+            })
+        }
+        else if(content.trim() == "" && !files){
+            swall('Không có nội dung và ảnh không thể đăng bài' , 'error')
+        } 
+        
+    })
 })

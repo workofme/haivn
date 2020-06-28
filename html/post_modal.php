@@ -6,12 +6,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body">
-                <form id="form-post">
-                    <div class="form-group">
-                        <label for="title">Tiêu Đề</label>
-                        <input type="text" class="form-control" id="title">
-
-                    </div>
+                
                     <div class="form-group">
                         <label for="content">Nội dung</label>
                         <textarea class="form-control" id="content" rows="3"></textarea>
@@ -19,16 +14,16 @@
 
                     <div class="form-group ">
                         <label for="anh">Ảnh</label>
-                        <input type="file" class="" id="anh">
+                        <input type="file" class="" id="img">
 
                     </div>
                     <div class="text-center">
-                        <button class="btn btn-success" type="submit">đănng bài</button>
+                        <button class="btn btn-success" type="button" id="post_new">đănng bài</button>
                     </div>
-                </form>
+                
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 
             </div>
         </div>

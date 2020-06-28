@@ -48,7 +48,11 @@
             mysqli_query($this->link, $sql) or die("Lỗi  query  insert ----" .mysqli_error($this->link));
             return mysqli_insert_id($this->link);
         }
-
+        public function query($sql)
+        {
+            $result = mysqli_query($this->link  , $sql);
+            return $result;
+        }
         public function update($table, array $data, array $conditions)
         {
             $sql = "UPDATE {$table}";
@@ -282,9 +286,11 @@
         public function total($sql)
         {
             $result = mysqli_query($this->link  , $sql);
-            $tien = mysqli_fetch_assoc($result);
+            $tien = mysqli_fetch_array($result);
             return $tien;
         }
+       
+        
     }
    
 ?>

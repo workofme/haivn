@@ -7,10 +7,10 @@
     /**
     * debug
     **/
-    
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
     $status = 0;
     $messages= "";
-    
+    $date = date('d/m/Y , H:i:s');
     if(isset($_SESSION['username'])){
         $username = $_SESSION['username'];
     }

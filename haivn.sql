@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2020 at 03:37 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.6
+-- Generation Time: Jun 28, 2020 at 02:45 PM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.4.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,31 @@ SET time_zone = "+00:00";
 --
 -- Database: `haivn`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `post`
+--
+
+CREATE TABLE `post` (
+  `id` int(11) NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ho_thanhvien` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ten_thanhvien` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_thanhvien` int(11) NOT NULL,
+  `img` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `active` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `post`
+--
+
+INSERT INTO `post` (`id`, `content`, `date`, `ho_thanhvien`, `ten_thanhvien`, `id_thanhvien`, `img`, `active`) VALUES
+(1, 'test post', '28/06/2020 , 18:37:47', 'Nguyễn1', 'Quang Bảo1', 2, '', 0),
+(3, '', '28/06/2020 , 18:41:04', 'Nguyễn1', 'Quang Bảo1', 2, 'c7e2588f9aecbec621d820693e22c7c1.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -47,11 +72,17 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `user`, `pass`, `gender`, `active`, `role`, `like`, `fllow`, `ho`, `ten`, `avatar`) VALUES
 (1, 'jinnkey', '12345', 1, 0, 0, 0, 0, '', '', ''),
-(2, 'baodeptrai', '12345', 1, 0, 0, 0, 0, 'Nguyễn', 'Quang Bảo', '');
+(2, 'baodeptrai', '123456', 1, 0, 0, 0, 0, 'Nguyễn', 'Quang Bảo', 'anh.jpg');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `post`
+--
+ALTER TABLE `post`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -62,6 +93,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `post`
+--
+ALTER TABLE `post`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
