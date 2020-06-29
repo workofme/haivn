@@ -37,9 +37,9 @@
             $sql .= '(' . $columns . ')';
             foreach($data as $field => $value) {
                 if(is_string($value)) {
-                    $values .= "'". mysqli_real_escape_string($this->link,$value) ."',";
+                    $values .= "'". @mysqli_real_escape_string($this->link,$value) ."',";
                 } else {
-                    $values .= mysqli_real_escape_string($this->link,$value) . ',';
+                    $values .= @mysqli_real_escape_string($this->link,$value) . ',';
                 }
             }
             $values = substr($values, 0, -1);
@@ -50,16 +50,16 @@
         }
         public function last_id()
         {
-            return  mysqli_insert_id($this->link);
+            return  @mysqli_insert_id($this->link);
         }
         public function query($sql)
         {
-            $result = mysqli_query($this->link  , $sql);
+            $result = @mysqli_query($this->link  , $sql);
             return $result;
         }
         public function num_row($sql)
         {
-            $query = mysqli_query($this->link , $sql);
+            $query = @mysqli_query($this->link , $sql);
             $result = mysqli_num_rows($query);
             return $result;
         }
@@ -95,14 +95,14 @@
             $sql .= $set . $where;
             // _debug($sql);die;
 
-            mysqli_query($this->link, $sql) or die( "Lỗi truy vấn Update -- " .mysqli_error());
+            @mysqli_query($this->link, $sql) or die( "Lỗi truy vấn Update -- " .mysqli_error());
 
-            return mysqli_affected_rows($this->link);
+            return @mysqli_affected_rows($this->link);
         }
         public function updateview($sql)
         {
             $result = mysqli_query($this->link,$sql)  or die ("Lỗi update view " .mysqli_error($this->link));
-            return mysqli_affected_rows($this->link);
+            return @mysqli_affected_rows($this->link);
 
         }
         public function countTable($table , array $conditions)
@@ -111,16 +111,16 @@
             $where = " WHERE ";
             foreach($conditions as $field => $value) {
                 if(is_string($value)) {
-                    $where .= $field .'='.'\''. mysqli_real_escape_string($this->link, xss_clean($value)) .'\' AND ';
+                    $where .= $field .'='.'\''. @mysqli_real_escape_string($this->link, xss_clean($value)) .'\' AND ';
                 } else {
-                    $where .= $field .'='. mysqli_real_escape_string($this->link, xss_clean($value)) . ' AND ';
+                    $where .= $field .'='. @mysqli_real_escape_string($this->link, xss_clean($value)) . ' AND ';
                 }
             }
             $where = substr($where, 0, -5);
             $sql .= $where;
             
             $result = mysqli_query($this->link, $sql) or die("Lỗi Truy Vấn countTable----" .mysqli_error($this->link));
-            $num = mysqli_num_rows($result);
+            $num = @mysqli_num_rows($result);
             return $num;
         }
         
@@ -136,7 +136,7 @@
             $sql = "DELETE FROM {$table} WHERE id = $id ";
 
             mysqli_query($this->link,$sql) or die (" Lỗi Truy Vấn delete   --- " .mysqli_error($this->link));
-            return mysqli_affected_rows($this->link);
+            return @mysqli_affected_rows($this->link);
         }
 
         /**
@@ -149,18 +149,18 @@
             {
                 $id = intval($id);
                 $sql = "DELETE FROM {$table} WHERE id = $id ";
-                mysqli_query($this->link,$sql) or die (" Lỗi Truy Vấn delete   --- " .mysqli_error($this->link));
+                @mysqli_query($this->link,$sql) or die (" Lỗi Truy Vấn delete   --- " .mysqli_error($this->link));
             }
             return true;
         }
 
         public function fetchsql( $sql )
         {
-            $result = mysqli_query($this->link,$sql) or die("Lỗi  truy vấn sql " .mysqli_error($this->link));
+            $result = @mysqli_query($this->link,$sql) or die("Lỗi  truy vấn sql " .mysqli_error($this->link));
             $data = [];
             if( $result)
             {
-                while ($num = mysqli_fetch_assoc($result))
+                while ($num = @mysqli_fetch_assoc($result))
                 {
                     $data[] = $num;
                 }
@@ -171,8 +171,8 @@
         public function fetchID($table , $id )
         {
             $sql = "SELECT * FROM {$table} WHERE id = $id ";
-            $result = mysqli_query($this->link,$sql) or die("Lỗi  truy vấn fetchID " .mysqli_error($this->link));
-            return mysqli_fetch_assoc($result);
+            $result = @mysqli_query($this->link,$sql) or die("Lỗi  truy vấn fetchID " .mysqli_error($this->link));
+            return @mysqli_fetch_assoc($result);
         }
 
         public function fetchOne($table , $query)
@@ -180,16 +180,16 @@
             $sql  = "SELECT * FROM {$table} WHERE ";
             $sql .= $query;
             $sql .= "LIMIT 1";
-            $result = mysqli_query($this->link,$sql) or die("Lỗi  truy vấn fetchOne " .mysqli_error($this->link));
-            return mysqli_fetch_assoc($result);
+            $result = @mysqli_query($this->link,$sql) or die("Lỗi  truy vấn fetchOne " .mysqli_error($this->link));
+            return @mysqli_fetch_assoc($result);
         }
 
         public function deletesql ($table ,  $sql )
         {
             $sql = "DELETE FROM {$table} WHERE " .$sql;
             // _debug($sql);die;
-            mysqli_query($this->link,$sql) or die (" Lỗi Truy Vấn delete   --- " .mysqli_error($this->link));
-            return mysqli_affected_rows($this->link);
+            @mysqli_query($this->link,$sql) or die (" Lỗi Truy Vấn delete   --- " .mysqli_error($this->link));
+            return @mysqli_affected_rows($this->link);
         }
 
         
@@ -197,11 +197,11 @@
          public function fetchAll($table)
         {
             $sql = "SELECT * FROM {$table} WHERE 1" ;
-            $result = mysqli_query($this->link,$sql) or die("Lỗi Truy Vấn fetchAll " .mysqli_error($this->link));
+            $result = @mysqli_query($this->link,$sql) or die("Lỗi Truy Vấn fetchAll " .mysqli_error($this->link));
             $data = [];
             if( $result)
             {
-                while ($num = mysqli_fetch_assoc($result))
+                while ($num = @mysqli_fetch_assoc($result))
                 {
                     $data[] = $num;
                 }
@@ -223,16 +223,16 @@
                 $data = [ "page" => $sotrang];
               
                
-                $result = mysqli_query($this->link,$sql) or die("Lỗi truy vấn fetchJone ---- " .mysqli_error($this->link));
+                $result = @mysqli_query($this->link,$sql) or die("Lỗi truy vấn fetchJone ---- " .mysqli_error($this->link));
             }
             else
             {
-                $result = mysqli_query($this->link,$sql) or die("Lỗi truy vấn fetchJone ---- " .mysqli_error($this->link));
+                $result = @mysqli_query($this->link,$sql) or die("Lỗi truy vấn fetchJone ---- " .mysqli_error($this->link));
             }
             
             if( $result)
             {
-                while ($num = mysqli_fetch_assoc($result))
+                while ($num = @mysqli_fetch_assoc($result))
                 {
                     $data[] = $num;
                 }
@@ -253,16 +253,16 @@
                 $sql .= " LIMIT $start,$row";
                 $data = [ "page" => $sotrang];
                
-                $result = mysqli_query($this->link,$sql) or die("Lỗi truy vấn fetchJone ---- " .mysqli_error($this->link));
+                $result = @mysqli_query($this->link,$sql) or die("Lỗi truy vấn fetchJone ---- " .mysqli_error($this->link));
             }
             else
             {
-                $result = mysqli_query($this->link,$sql) or die("Lỗi truy vấn fetchJone ---- " .mysqli_error($this->link));
+                $result = @mysqli_query($this->link,$sql) or die("Lỗi truy vấn fetchJone ---- " .mysqli_error($this->link));
             }
             
             if( $result)
             {
-                while ($num = mysqli_fetch_assoc($result))
+                while ($num = @mysqli_fetch_assoc($result))
                 {
                     $data[] = $num;
                 }
@@ -274,18 +274,18 @@
 
         public  function fetchJoneDetail($table , $sql ,$page = 0,$total ,$pagi )
         {
-            $result = mysqli_query($this->link,$sql) or die("Lỗi truy vấn fetchJone ---- " .mysqli_error($this->link));
+            $result = @mysqli_query($this->link,$sql) or die("Lỗi truy vấn fetchJone ---- " .mysqli_error($this->link));
 
             $sotrang = ceil($total / $pagi);
             $start = ($page - 1 ) * $pagi ;
             $sql .= " LIMIT $start,$pagi";
 
-            $result = mysqli_query($this->link , $sql);
+            $result = @mysqli_query($this->link , $sql);
             $data = [];
             $data = [ "page" => $sotrang];
             if( $result)
             {
-                while ($num = mysqli_fetch_assoc($result))
+                while ($num = @mysqli_fetch_assoc($result))
                 {
                     $data[] = $num;
                 }
@@ -295,8 +295,8 @@
 
         public function total($sql)
         {
-            $result = mysqli_query($this->link  , $sql);
-            $tien = mysqli_fetch_array($result);
+            $result = @mysqli_query($this->link  , $sql);
+            $tien = @mysqli_fetch_array($result);
             return $tien;
         }
        
