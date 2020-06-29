@@ -74,7 +74,7 @@ elseif($get === 3){
     }
 }
 elseif($get === 4){
-    $add_post = $db->insert('post' , array('contenr' => $content ,'date' => $date , 'ho_thanhvien' => $get_user['ho'] , 'ten_thanhvien' => $get_user['ten'] , 'id_thanhvien' => $get_user['id'] , 'img' => $filename));
+    $add_post = $db->insert('post' , array('content' => $content ,'date' => $date , 'ho_thanhvien' => $get_user['ho'] , 'ten_thanhvien' => $get_user['ten'] , 'id_thanhvien' => $get_user['id'] , 'img' => $filename));
     if($add_post){
         $status = 0;
         $messages = "bài viết của bạn sẽ được duyệt trong vài phút";

@@ -275,10 +275,75 @@ $(document).ready(() => {
                     })
                 }
             })
+            
+        }
+        else if(files && content.trim() !== ""){
+            
+                    $.ajax({
+                        url: "ajax/new_post.php",
+                        type : 'post',
+                        data : formData,
+                        dataType: 'json',
+                        processData: false, contentType: false,
+                        beforeSend: () => {
+                            $(this).html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Loading...`)
+                        },
+                        success: (res) => {
+                            if (res.status == 0) {
+                                swall(res.messages, 'success')
+                                loadpage()
+                            } else if (res.status == 1) {
+                                swall(res.messages, 'error')
+                                loadpage()
+                            }
+                        }
+                    })
+                
+            
         }
         else if(content.trim() == "" && !files){
             swall('Không có nội dung và ảnh không thể đăng bài' , 'error')
         } 
         
+    })
+    var limit = 1000;
+    var action = 'inactive'
+    var start = 0
+    function load_post(limit , start){
+        $.ajax({
+            url : 'ajax/load_post.php',
+            method : 'post',
+            data : {limit: limit , start : start},
+            cache : false,
+            success : function (data) {
+                $('#load_data').append(data)
+                if(data == ""){
+                    $('#load_data_messages').html(`<button class='form-control btn btn_warning'> Đang tải bài viết </button>`)
+                    action = 'active'
+                }else {
+                    $('#load_data_messages').html(`<button class=' btn btn-danger form-control'> Hết Bài viết rồi</button>`)
+                    action = 'inactive'
+                }
+            }
+        })
+    }
+    if(action == 'inactive'){
+        action = 'active'
+        load_post(limit , start)
+    }
+    $(window).scroll(function(){
+        if($(window).scrollTop() + $(window).height() > $('#load_data').height() && action == 'inactive'){
+            action = 'active'
+            start = start + limit
+            setTimeout(function(){
+                load_post(limit , start)
+            },1000)
+        }
+    })
+    $('.like').click(function(e) {
+        e.preventDefault()
+        var like = $('.id').attr('data').text();
+        alert('abc');
     })
 })
