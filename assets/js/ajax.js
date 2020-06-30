@@ -206,9 +206,9 @@ $(document).ready(() => {
         var formData = new FormData()
         var content = $('#content').val()
         var files = $('#img')[0].files[0]
-        formData.append('img' , files);
-        formData.append('content' , content);
-        if(content.trim() !== "" && !files){
+        formData.append('img', files);
+        formData.append('content', content);
+        if (content.trim() !== "" && !files) {
             Swal.fire({
                 title: 'Thông báo',
                 text: "Bạn đăng bài viết nhưng không dùng ảnh",
@@ -221,10 +221,11 @@ $(document).ready(() => {
                 if (result.value) {
                     $.ajax({
                         url: "ajax/new_post.php",
-                        type : 'post',
-                        data : formData,
+                        type: 'post',
+                        data: formData,
                         dataType: 'json',
-                        processData: false, contentType: false,
+                        processData: false,
+                        contentType: false,
                         beforeSend: () => {
                             $(this).html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                         Loading...`)
@@ -241,8 +242,7 @@ $(document).ready(() => {
                     })
                 }
             })
-        }
-        else if(files && content.trim() == ""){
+        } else if (files && content.trim() == "") {
             Swal.fire({
                 title: 'Thông báo',
                 text: "Bạn đăng bài viết nhưng không có nội dung",
@@ -255,10 +255,11 @@ $(document).ready(() => {
                 if (result.value) {
                     $.ajax({
                         url: "ajax/new_post.php",
-                        type : 'post',
-                        data : formData,
+                        type: 'post',
+                        data: formData,
                         dataType: 'json',
-                        processData: false, contentType: false,
+                        processData: false,
+                        contentType: false,
                         beforeSend: () => {
                             $(this).html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                         Loading...`)
@@ -275,75 +276,119 @@ $(document).ready(() => {
                     })
                 }
             })
-            
-        }
-        else if(files && content.trim() !== ""){
-            
-                    $.ajax({
-                        url: "ajax/new_post.php",
-                        type : 'post',
-                        data : formData,
-                        dataType: 'json',
-                        processData: false, contentType: false,
-                        beforeSend: () => {
-                            $(this).html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+
+        } else if (files && content.trim() !== "") {
+
+            $.ajax({
+                url: "ajax/new_post.php",
+                type: 'post',
+                data: formData,
+                dataType: 'json',
+                processData: false,
+                contentType: false,
+                beforeSend: () => {
+                    $(this).html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                         Loading...`)
-                        },
-                        success: (res) => {
-                            if (res.status == 0) {
-                                swall(res.messages, 'success')
-                                loadpage()
-                            } else if (res.status == 1) {
-                                swall(res.messages, 'error')
-                                loadpage()
-                            }
-                        }
-                    })
-                
-            
+                },
+                success: (res) => {
+                    if (res.status == 0) {
+                        swall(res.messages, 'success')
+                        loadpage()
+                    } else if (res.status == 1) {
+                        swall(res.messages, 'error')
+                        loadpage()
+                    }
+                }
+            })
+
+
+        } else if (content.trim() == "" && !files) {
+            swall('Không có nội dung và ảnh không thể đăng bài', 'error')
         }
-        else if(content.trim() == "" && !files){
-            swall('Không có nội dung và ảnh không thể đăng bài' , 'error')
-        } 
-        
+
     })
     var limit = 1000;
     var action = 'inactive'
     var start = 0
-    function load_post(limit , start){
+
+    function load_post(limit, start) {
         $.ajax({
-            url : 'ajax/load_post.php',
-            method : 'post',
-            data : {limit: limit , start : start},
-            cache : false,
-            success : function (data) {
+            url: 'ajax/load_post.php',
+            method: 'post',
+            data: { limit: limit, start: start },
+            cache: false,
+            success: function(data) {
                 $('#load_data').append(data)
-                if(data == ""){
+                if (data == "") {
                     $('#load_data_messages').html(`<button class='form-control btn btn_warning'> Đang tải bài viết </button>`)
                     action = 'active'
-                }else {
+                } else {
                     $('#load_data_messages').html(`<button class=' btn btn-danger form-control'> Hết Bài viết rồi</button>`)
                     action = 'inactive'
                 }
             }
         })
+
     }
-    if(action == 'inactive'){
+
+    if (action == 'inactive') {
         action = 'active'
-        load_post(limit , start)
+        load_post(limit, start)
     }
-    $(window).scroll(function(){
-        if($(window).scrollTop() + $(window).height() > $('#load_data').height() && action == 'inactive'){
+    $(window).scroll(function() {
+        if ($(window).scrollTop() + $(window).height() > $('#load_data').height() && action == 'inactive') {
             action = 'active'
             start = start + limit
-            setTimeout(function(){
-                load_post(limit , start)
-            },1000)
+            setTimeout(function() {
+                load_post(limit, start)
+            }, 1000)
         }
+
     })
-    $('.like').click(function(e) {
-        e.preventDefault()
-        var like = $('.id').attr('data').text();
-        alert('abc');
-    })
+    $(document).on('click', 'a.like', function() {
+        $.ajax({
+            url: 'ajax/post.php',
+            type: 'post',
+            dataType: 'json',
+            beforeSend: () => {
+
+            },
+            success: (res) => {
+                if (res.status == 0) {
+                    var post = $('h5.id').attr('data');
+                    var id_thanhvien = $('a.id_thanhvien').attr('data')
+                    $.ajax({
+                        url: 'ajax/like.php',
+                        type: 'post',
+                        data: { post: post, id_thanhvien: id_thanhvien },
+                        dataType: 'json',
+                        success: (like) => {
+                            if (like.status == 0) {
+                                swall(like.messages, 'success');
+                                $(this).html('&nbsp;' + like.num_likes)
+                                if (like.check_like == 0) {
+                                    $(this).addClass('text-danger')
+
+                                } else if (like.check_like == 1) {
+                                    $(this).removeClass('text-danger')
+
+                                }
+
+
+                            } else if (like.status == 1) {
+                                swall(like.messages, 'error')
+
+                            }
+                        }
+                    })
+
+                } else if (res.status == 1) {
+
+
+                    swall('Bạn hãy đăng nhập để đăng bài', 'error')
+                }
+            }
+        })
+    });
+
 })

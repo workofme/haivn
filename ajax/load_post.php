@@ -3,10 +3,12 @@ session_start();
 include "../Database.php";
 include "../Function.php";
 $db = new Database;
+$get_user = $db->total("SELECT * FROM `users` WHERE `user` = '$username' ");
 if(isset($_POST['limit'])  && isset($_POST['start'])){
     $num_post = $db->num_row('SELECT * FROM `post` WHERE "active" = 0');
     if($num_post > 0){
     $query = $db->query("SELECT * FROM `post` ORDER BY `id` DESC LIMIT {$_POST['start']} , {$_POST['limit']}" );
+    
     // $query = $db->query("SELECT * FROM `post` " );
     
         while($row = mysqli_fetch_array($query)):
@@ -38,16 +40,23 @@ if(isset($_POST['limit'])  && isset($_POST['start'])){
             ?>
             </h5>
             <p>
-                <a class="far fa-eye views like" href="">&nbsp;200</a>
+                <a class="far fa-eye views" href="">&nbsp;200</a>
                 <a class="fas fa-comments commnets" href=""> &nbsp; 22 &nbsp;</a>
-                <a class="fas fa-thumbs-down dislike" href="">&nbsp;10</a>
-                <?php if($row['like'] == 1){ ?>
-                <a class="far fa-heart  text-danger like" >  <?php echo $row['num_likes']; ?></a>
-                <?php } else { ?>
-                    <a class="far fa-heart like "> <?php echo $row['num_likes']; ?></a>
+                <a class="fas fa-thumbs-down dislike " href="">&nbsp;10</a>
+                <?php
+                $check_like = $db->countTable('likes' , array('post' => $row['id'] , 'id_thanhvien_like' => $get_user['id'] , 'id_thanhvien_post' => $row['id_thanhvien'])); 
+                if($check_like > 0){
+                    $get_like = $db->total("SELECT * FROM `likes` WHERE `id_thanhvien_like` = '{$get_user['id']}'  AND `id_thanhvien_post` = '{$row['id_thanhvien']}' ");
+                    $like = $get_like['status'];
+                }
+                 ?>
+                <?php if($like == 0){ ?>
+                <a class=" far fa-heart like   text-danger " >&nbsp;  <?php echo $row['num_likes']; ?></a>
+                <?php } elseif($like == 1) { ?>
+                    <a class="far fa-heart like" > &nbsp;  <?php echo $row['num_likes']; ?> </a>
                 <?php } ?>
             </p>
-            <p><a href="">Tác giả <b class="btn-primary"><?php echo $first_name . " " . $last_name; ?></b></a></p>
+            <p><a class="id_thanhvien" data="<?php echo $row['id_thanhvien']; ?>">Tác giả <b class="btn-primary"><?php echo $first_name . " " . $last_name; ?></b></a></p>
             <p><a href="">Thời gian <b class="btn-success"><?php echo $row['date']; ?></b></a></p>
          </div>
     </div>

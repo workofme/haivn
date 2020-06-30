@@ -71,7 +71,7 @@ if(isset($username)){
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="#" tabindex="-1">Ảnh động</a>
+                            <a class="nav-link" href="#" tabindex="-1">Ảnh động</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link " href="#" tabindex="-1">Link hay</a>

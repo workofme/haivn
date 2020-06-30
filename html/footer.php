@@ -13,6 +13,7 @@
 <script src="assets/js/main.js"></script>
 
 <script src="assets/js/ajax.js"></script>
+<script src="assets/js/javascript.js"></script>
 </body>
 
 </html>

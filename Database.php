@@ -60,7 +60,7 @@
         public function num_row($sql)
         {
             $query = @mysqli_query($this->link , $sql);
-            $result = mysqli_num_rows($query);
+            $result = @mysqli_num_rows($query);
             return $result;
         }
         public function update($table, array $data, array $conditions)

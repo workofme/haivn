@@ -23,10 +23,7 @@ $('#input').click(() => {
         $('.img-post').css('height', 'auto');
     }
 })
-$('a.like').click(function(e) {
-    e.preventDefault();
-    $(this).attr('class', 'fas fa-heart text-danger')
-})
+
 mybutton = document.getElementById("myBtn");
 
 // When the user scrolls down 20px from the top of the document, show the button
