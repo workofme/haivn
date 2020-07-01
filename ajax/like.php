@@ -10,13 +10,14 @@ $id_like = $get_user['id'];
 $check_like = 0;
 // $num_post = $db->num_row("SELECT * FROM `likes` WHERE `post` = '$id' and `id_thanhvien_like` = '$id_like'  and `id_thanh_vien_post` = '$user_post' ");
 $num_post = $db->countTable('likes' , array('post' => $id , 'id_thanhvien_like' => $id_like , 'id_thanhvien_post' => $user_post));
+
 if($num_post > 0){
     $get_like = $db->total("SELECT * FROM `likes` WHERE `id_thanhvien_like` = '$id_like'  AND `id_thanhvien_post` = '$user_post' ");
     $get_post = $db->total("SELECT * FROM `post` WHERE `id` = '$id'");
     $num_likes = $get_post['num_likes'];
     if($get_like['status'] == 0){
         $num_likes--;
-        if($num_likes == 0){
+        if($num_likes === 0){
             $plus_like = $db->update('post' , array('num_likes'  => 0) , array('id' => $id));
         }
         $update_like = $db->update('likes' , array('status' => 1) , array('status' => 0));
@@ -49,7 +50,7 @@ if($num_post > 0){
     
     
 }
-else {
+elseif($num_post == 0) {
     $like = $db->insert('likes' , array('post' => $id , 'id_thanhvien_like' => $get_user['id'] , 'id_thanhvien_post' => $user_post , 'status' => 0 ));
     if($like){
         $status = 0;

@@ -14,6 +14,7 @@
     if(isset($_SESSION['username'])){
         $username = $_SESSION['username'];
     }
+   
     function _debug($data) {
 
         echo '<pre style="background: #000; color: #fff; width: 100%; overflow: auto">';

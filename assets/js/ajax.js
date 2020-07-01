@@ -355,7 +355,10 @@ $(document).ready(() => {
             },
             success: (res) => {
                 if (res.status == 0) {
-                    var post = $('h5.id').attr('data');
+                    var data = $(this).parent().parent()
+                    var post = data.children().attr('data')
+                    post = parseInt(post)
+
                     var id_thanhvien = $('a.id_thanhvien').attr('data')
                     $.ajax({
                         url: 'ajax/like.php',
@@ -385,7 +388,7 @@ $(document).ready(() => {
                 } else if (res.status == 1) {
 
 
-                    swall('Bạn hãy đăng nhập để đăng bài', 'error')
+                    swall('Bạn hãy đăng nhập để like', 'error')
                 }
             }
         })
