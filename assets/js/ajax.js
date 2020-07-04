@@ -310,12 +310,14 @@ $(document).ready(() => {
     var limit = 1000;
     var action = 'inactive'
     var start = 0
-
+    var view = 0;
+    var actions = 'inactives'
     function load_post(limit, start) {
+        view = view + 1;
         $.ajax({
             url: 'ajax/load_post.php',
             method: 'post',
-            data: { limit: limit, start: start },
+            data: { limit: limit, start: start  , view : view},
             cache: false,
             success: function(data) {
                 $('#load_data').append(data)
@@ -330,6 +332,7 @@ $(document).ready(() => {
         })
 
     }
+   
 
     if (action == 'inactive') {
         action = 'active'
@@ -393,5 +396,38 @@ $(document).ready(() => {
             }
         })
     });
+    function load_comment(limit, start) {
+        view = view + 1;
+        $.ajax({
+            url: 'ajax/comment.php',
+            method: 'post',
+            data: { limit: limit, start: start  , view : view},
+            cache: false,
+            success: function(data) {
+                $('#load_comment').append(data)
+                if (data == "") {
+                    $('#load_comment').html(`<button class='form-control btn btn_warning'> Đang tải bình luận </button>`)
+                    actions = 'actives'
+                } else {
+                    $('#load_data_comment').html(`<button class=' btn btn-danger form-control'> Hết bình luận rồi</button>`)
+                    actions = 'inactives'
+                }
+            }
+        })
 
+    }
+    if (actions == 'inactives') {
+        actions = 'actives'
+        load_comment(limit, start)
+    }
+    $(window).scroll(function() {
+        if ($(window).scrollTop() + $(window).height() > $('#load_comment').height() && actions == 'inactives') {
+            actions = 'actives'
+            start = start + limit
+            setTimeout(function() {
+                load_post(limit, start)
+            }, 1000)
+        }
+
+    })
 })

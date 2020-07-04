@@ -9,7 +9,9 @@ $content = postInput('content');
 if(isset($_FILES['img']['name'])){
     /* Location */
     $get = 1;
+    $random = rand(1000,9999);
     $filename = $_FILES['img']['name'];
+
     $location = "../assets/img/post/".$filename;
     $uploadOk = 1;
     $imageFileType = pathinfo($location,PATHINFO_EXTENSION);
@@ -21,7 +23,7 @@ if(isset($_FILES['img']['name'])){
         $check = 0;
     }else{
         /* Upload file */
-        if(move_uploaded_file($_FILES['img']['tmp_name'],$location)){
+        if(move_uploaded_file($_FILES['img']['tmp_name'].rand(1000,9999),$location)){
             $check = 1;
             
             
